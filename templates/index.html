@@ -34,8 +34,9 @@
         <div class="row">
             <div class="col-md-12">
                 <form method="POST">
+                    {% csrf_token %}
                     <div class="form-group row">
-                        {% csrf_token %}
+                        
                         <label for="" class="col-md-2">
                             Select food to add
                         </label>
@@ -61,6 +62,7 @@
                         <th>Protein(gm)</th>
                         <th>Fats(gm)</th>
                         <th>Calories(Kcal)</th>
+                        <th>Remove Item</th>
                     </tr>
                     {% for c in consumed_food %}
                     <tr>
@@ -70,6 +72,9 @@
                         <td>{{c.food_consumed.proteins}}</td>
                         <td>{{c.food_consumed.fats}}</td>
                         <td>{{c.food_consumed.Calories}}</td>
+                        <td>
+                            <a class="btn btn-outline-danger" href="{% url 'delete' c.id %}">X</a>
+                        </td>
                         
                         
                     </tr>
